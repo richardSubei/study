@@ -1,6 +1,7 @@
 package com.subei.atomic;
 
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.IntBinaryOperator;
 
 public class AtomicTest {
 
@@ -19,7 +20,14 @@ public class AtomicTest {
 				public void run() {
 					for (int j =0; j < 10000; j++) {
 //						value++;
- 						value.incrementAndGet();
+// 						value.incrementAndGet();
+ 						value.accumulateAndGet(1, new IntBinaryOperator() {
+							
+							@Override
+							public int applyAsInt(int left, int right) {
+								return left + right;
+							}
+						});
 					}
 				}
 			}).start();
