@@ -1,4 +1,4 @@
-package com.subei.atomic;
+package com.subei.lock.atomic;
 
 import java.util.concurrent.atomic.LongAccumulator;
 import java.util.function.LongBinaryOperator;

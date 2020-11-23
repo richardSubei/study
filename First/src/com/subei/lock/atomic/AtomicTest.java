@@ -1,4 +1,4 @@
-package com.subei.atomic;
+package com.subei.lock.atomic;
 
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.IntBinaryOperator;

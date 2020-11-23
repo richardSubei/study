@@ -1,4 +1,4 @@
-package com.subei.atomic;
+package com.subei.lock.atomic;
 
 public class Person {
 	volatile String name;
