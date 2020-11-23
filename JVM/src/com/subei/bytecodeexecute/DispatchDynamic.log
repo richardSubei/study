@@ -1,0 +1,58 @@
+Compiled from "DispatchDynamic.java"
+public class com.subei.bytecodeexecute.DispatchDynamic extends java.lang.Object
+  SourceFile: "DispatchDynamic.java"
+  minor version: 0
+  major version: 50
+  Constant pool:
+const #1 = Method	#6.#15;	//  java/lang/Object."<init>":()V
+const #2 = class	#16;	//  com/subei/bytecodeexecute/Man
+const #3 = Method	#2.#15;	//  com/subei/bytecodeexecute/Man."<init>":()V
+const #4 = Method	#17.#18;	//  com/subei/bytecodeexecute/Human.sayHello:()V
+const #5 = class	#19;	//  com/subei/bytecodeexecute/DispatchDynamic
+const #6 = class	#20;	//  java/lang/Object
+const #7 = Asciz	<init>;
+const #8 = Asciz	()V;
+const #9 = Asciz	Code;
+const #10 = Asciz	LineNumberTable;
+const #11 = Asciz	main;
+const #12 = Asciz	([Ljava/lang/String;)V;
+const #13 = Asciz	SourceFile;
+const #14 = Asciz	DispatchDynamic.java;
+const #15 = NameAndType	#7:#8;//  "<init>":()V
+const #16 = Asciz	com/subei/bytecodeexecute/Man;
+const #17 = class	#21;	//  com/subei/bytecodeexecute/Human
+const #18 = NameAndType	#22:#8;//  sayHello:()V
+const #19 = Asciz	com/subei/bytecodeexecute/DispatchDynamic;
+const #20 = Asciz	java/lang/Object;
+const #21 = Asciz	com/subei/bytecodeexecute/Human;
+const #22 = Asciz	sayHello;
+
+{
+public com.subei.bytecodeexecute.DispatchDynamic();
+  Code:
+   Stack=1, Locals=1, Args_size=1
+   0:	aload_0
+   1:	invokespecial	#1; //Method java/lang/Object."<init>":()V
+   4:	return
+  LineNumberTable: 
+   line 3: 0
+
+
+public static void main(java.lang.String[]);
+  Code:
+   Stack=2, Locals=2, Args_size=1
+   0:	new	#2; //class com/subei/bytecodeexecute/Man
+   3:	dup
+   4:	invokespecial	#3; //Method com/subei/bytecodeexecute/Man."<init>":()V
+   7:	astore_1
+   8:	aload_1
+   9:	invokevirtual	#4; //Method com/subei/bytecodeexecute/Human.sayHello:()V
+   12:	return
+  LineNumberTable: 
+   line 6: 0
+   line 7: 8
+   line 8: 12
+
+
+}
+

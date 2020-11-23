@@ -1,0 +1,44 @@
+Compiled from "FiledTable.java"
+public class com.subei.classload.FiledTable extends java.lang.Object
+  SourceFile: "FiledTable.java"
+  minor version: 0
+  major version: 50
+  Constant pool:
+const #1 = Method	#3.#14;	//  java/lang/Object."<init>":()V
+const #2 = class	#15;	//  com/subei/classload/FiledTable
+const #3 = class	#16;	//  java/lang/Object
+const #4 = Asciz	m;
+const #5 = Asciz	I;
+const #6 = Asciz	<init>;
+const #7 = Asciz	()V;
+const #8 = Asciz	Code;
+const #9 = Asciz	LineNumberTable;
+const #10 = Asciz	test;
+const #11 = Asciz	(I)V;
+const #12 = Asciz	SourceFile;
+const #13 = Asciz	FiledTable.java;
+const #14 = NameAndType	#6:#7;//  "<init>":()V
+const #15 = Asciz	com/subei/classload/FiledTable;
+const #16 = Asciz	java/lang/Object;
+
+{
+public com.subei.classload.FiledTable();
+  Code:
+   Stack=1, Locals=1, Args_size=1
+   0:	aload_0
+   1:	invokespecial	#1; //Method java/lang/Object."<init>":()V
+   4:	return
+  LineNumberTable: 
+   line 7: 0
+
+
+public void test(int);
+  Code:
+   Stack=0, Locals=2, Args_size=2
+   0:	return
+  LineNumberTable: 
+   line 13: 0
+
+
+}
+
