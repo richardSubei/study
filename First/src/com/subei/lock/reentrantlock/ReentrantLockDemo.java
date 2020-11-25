@@ -4,7 +4,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 //演示可重入
 //执行了几次lock，对应就要执行几次unlock
-public class ReentrantLockTest {
+public class ReentrantLockDemo {
 
 	static ReentrantLock lock = new ReentrantLock();
 	

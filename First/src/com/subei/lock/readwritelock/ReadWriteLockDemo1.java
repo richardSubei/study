@@ -3,15 +3,15 @@ package com.subei.lock.readwritelock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 
-public class ReadWriteLockTest1 {
+public class ReadWriteLockDemo1 {
 //	ReentrantReadWriteLock 可以多线程读
-//	某线程获取读锁之后，其他线程还可以获取读锁，但是不可获取写锁，因为读的时候如果还在写，那数据应该是什么样子的呢
+//	某线程获取读锁之后，其他线程还可以获取读锁，但是不可获取写锁，因为读的时候如果还在写，那数据岂不是乱掉了
 //	同理获取写锁之后，也不应该获取读锁，总之，读写锁，不可同时读和写，但是可以多线程同时读
 //	
 	final ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
 	
 	public static void main(String[] args) {
-		final ReadWriteLockTest1 test1 = new ReadWriteLockTest1();
+		final ReadWriteLockDemo1 test1 = new ReadWriteLockDemo1();
 		
 		new Thread(new Runnable() {
 			public void run() {

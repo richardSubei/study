@@ -9,7 +9,7 @@ import java.util.concurrent.SynchronousQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-public class ThreadPoolTest {
+public class ThreadPoolDemo {
 
 	public static void main(String[] args) throws InterruptedException {
 //		new ThreadPoolTest().threadPoolExecutorTest();
@@ -17,7 +17,7 @@ public class ThreadPoolTest {
 //		new ThreadPoolTest().threadPoolExecutorTest2();
 //		new ThreadPoolTest().threadPoolExecutorTest4();
 //		new ThreadPoolTest().threadPoolExecutorTest5();
-		new ThreadPoolTest().threadPoolExecutorTest6();
+		new ThreadPoolDemo().threadPoolExecutorTest6();
 
 	}
 	

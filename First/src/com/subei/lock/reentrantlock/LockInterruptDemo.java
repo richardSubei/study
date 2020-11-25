@@ -3,12 +3,12 @@ package com.subei.lock.reentrantlock;
 import java.util.concurrent.locks.ReentrantLock;
 
 //线程中断
-public class LockInterruptTest {
+public class LockInterruptDemo {
 
 	public ReentrantLock lock = new ReentrantLock();
 	
 	public static void main(String[] args) throws InterruptedException {
-		final LockInterruptTest lockInterruptTest = new LockInterruptTest();
+		final LockInterruptDemo lockInterruptTest = new LockInterruptDemo();
 		Runnable runnable = new Runnable() {
 			public void run() {
 				try {
