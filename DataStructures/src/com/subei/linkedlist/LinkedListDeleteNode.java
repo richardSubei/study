@@ -24,7 +24,8 @@ public class LinkedListDeleteNode {
 //	删除第n个结点
 	public static Node deleteNode(Node l1, int n) {
 		int i = 0;
-		Node pre = new Node(-1);
+		Node preHead = new Node(-1);
+		Node pre = preHead;
 		pre.setNext(l1);
 		while (pre != null) {
 			if (i+1 == n) {
@@ -33,7 +34,7 @@ public class LinkedListDeleteNode {
 			pre = pre.getNext();
 			i++;
 		}
-		return pre;
+		return preHead.getNext();
 	}
 
 //	删除倒数第n个结点
