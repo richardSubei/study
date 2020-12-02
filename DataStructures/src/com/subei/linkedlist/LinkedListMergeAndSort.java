@@ -20,7 +20,7 @@ public class LinkedListMergeAndSort {
 		m2.setNext(m3);
 		m3.setNext(m4);
 		
-		Node pre = mergeAndSort(h1, h2);
+		Node pre = mergeAndSort1(h1, h2);
 		
 		while (pre != null) {
 			System.out.println(pre.getData());
@@ -53,6 +53,33 @@ public class LinkedListMergeAndSort {
 		
 		return preHead.getNext();
 	}
+	
+	
+	public static Node mergeAndSort1(Node l1, Node l2) {
+		Node preHead = new Node(-1);
+		Node pre = preHead;
+		while (l1 != null && l2 != null) {
+			if (l1.getData() <= l2.getData()) {
+				pre.setNext(l1);
+				l1 = l1.getNext();
+			} else {
+				pre.setNext(l2);
+				l2 = l2.getNext();
+			}
+			pre = pre.getNext();
+		}
+		if (l1 == null) {
+			pre.setNext(l2);
+		} else {
+			pre.setNext(l1);
+		}
+		
+		return preHead.getNext();
+	}
+	
+	
+	
+	
 	
 	
 	

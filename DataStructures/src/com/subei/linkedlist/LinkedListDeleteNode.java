@@ -17,7 +17,8 @@ public class LinkedListDeleteNode {
 		
 //		Node l1 = deleteNode(head1, 3);
 //		Node l1 = deleteNodeBack(head1, 3);
-		Node l1 = deleteNodeBackOneCycle(head1, 2);
+//		Node l1 = deleteNodeBackOneCycle(head1, 2);
+		Node l1 = deleteReview1(head1, 2);
 		while (l1 != null) {
 			System.out.println(l1.getData());
 			l1 = l1.getNext();
@@ -80,6 +81,48 @@ public class LinkedListDeleteNode {
 		second.setNext(second.getNext().getNext());
 		return pre.getNext();
 	}
+	
+//	删除倒数第几个结点 reviw
+	public static Node deleteReview(Node head, int n) {
+		if (head == null) {
+			return head;
+		}
+		
+		Node pre = new Node(-1);
+		pre.setNext(head);
+		Node first = head;
+		Node second = pre;
+		for (int i = 0; i < n; i++) {
+			first = first.getNext();
+		}
+		while (first != null) {
+			first = first.getNext();
+			second = second.getNext();
+		}
+		second.setNext(second.getNext().getNext());
+		
+		return pre.getNext();
+	}
+	
+	public static Node deleteReview1(Node head, int n) {
+		int length = 0;
+		Node temp = head;
+		while (temp != null) {
+			temp = temp.getNext();
+			length++;
+		}
+		Node preHead = new Node(-1);
+		preHead.setNext(head);
+		Node pre = preHead;
+		for (int i = 1; i < length - n + 1; i++) {
+			pre = pre.getNext();
+		}
+		pre.setNext(pre.getNext().getNext());
+		
+		return preHead.getNext();
+	}
+	
+	
 	
 	
 }

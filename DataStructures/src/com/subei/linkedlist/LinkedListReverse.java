@@ -20,7 +20,8 @@ public class LinkedListReverse {
 			h = h.getNext();
 		}
 		
-		h = reverseLeetCode(head);
+//		h = reverseLeetCode(head);
+		h = reverseReview(head);
 		System.out.println("反转后");
 		while (null != h) {
 			System.out.println(h.getData());
@@ -60,5 +61,43 @@ public class LinkedListReverse {
 		}
 		return pre;
 	}
+	
+	
+	
+	
+	
+//	复习链表反转
+	public static Node reverseReview(Node head) {
+		if (head == null || head.getNext() == null) {
+			return head;
+		}
+		
+		Node pre = null;
+		Node cur = head;
+		Node temp = null;
+		while (cur != null) {
+			temp = cur.getNext();
+			cur.setNext(pre);
+			pre = cur;
+			cur = temp;
+		}
+		return pre;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }

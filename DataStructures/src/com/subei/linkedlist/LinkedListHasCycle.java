@@ -19,6 +19,7 @@ public class LinkedListHasCycle {
 		
 		System.out.println(hasCycleUseSet(head));
 		System.out.println(hasCycleUseFastAndSlow(head));
+		System.out.println(checkReviw(head));
 
 	}
 	
@@ -57,5 +58,32 @@ public class LinkedListHasCycle {
 		}
 		return false;
 	}
+	
+//	复习写一遍
+	public static boolean checkReviw(Node l) {
+		Node fast = l.getNext();
+		Node slow = l;
+		
+		while (slow != null) {
+			if (fast == slow) {
+				return true;
+			}
+			slow = slow.getNext();
+			fast = fast.getNext().getNext();
+		}
+		return false;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }
