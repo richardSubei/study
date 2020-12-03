@@ -1,0 +1,76 @@
+Compiled from "StackTest.java"
+public class com.subei.memory.StackTest extends java.lang.Object
+  SourceFile: "StackTest.java"
+  minor version: 0
+  major version: 50
+  Constant pool:
+const #1 = Method	#6.#17;	//  java/lang/Object."<init>":()V
+const #2 = Method	#5.#18;	//  com/subei/memory/StackTest.test:(I)V
+const #3 = Field	#19.#20;	//  java/lang/System.out:Ljava/io/PrintStream;
+const #4 = Method	#21.#22;	//  java/io/PrintStream.println:(I)V
+const #5 = class	#23;	//  com/subei/memory/StackTest
+const #6 = class	#24;	//  java/lang/Object
+const #7 = Asciz	<init>;
+const #8 = Asciz	()V;
+const #9 = Asciz	Code;
+const #10 = Asciz	LineNumberTable;
+const #11 = Asciz	main;
+const #12 = Asciz	([Ljava/lang/String;)V;
+const #13 = Asciz	test;
+const #14 = Asciz	(I)V;
+const #15 = Asciz	SourceFile;
+const #16 = Asciz	StackTest.java;
+const #17 = NameAndType	#7:#8;//  "<init>":()V
+const #18 = NameAndType	#13:#14;//  test:(I)V
+const #19 = class	#25;	//  java/lang/System
+const #20 = NameAndType	#26:#27;//  out:Ljava/io/PrintStream;
+const #21 = class	#28;	//  java/io/PrintStream
+const #22 = NameAndType	#29:#14;//  println:(I)V
+const #23 = Asciz	com/subei/memory/StackTest;
+const #24 = Asciz	java/lang/Object;
+const #25 = Asciz	java/lang/System;
+const #26 = Asciz	out;
+const #27 = Asciz	Ljava/io/PrintStream;;
+const #28 = Asciz	java/io/PrintStream;
+const #29 = Asciz	println;
+
+{
+public com.subei.memory.StackTest();
+  Code:
+   Stack=1, Locals=1, Args_size=1
+   0:	aload_0
+   1:	invokespecial	#1; //Method java/lang/Object."<init>":()V
+   4:	return
+  LineNumberTable: 
+   line 3: 0
+
+
+public static void main(java.lang.String[]);
+  Code:
+   Stack=1, Locals=1, Args_size=1
+   0:	iconst_1
+   1:	invokestatic	#2; //Method test:(I)V
+   4:	return
+  LineNumberTable: 
+   line 6: 0
+   line 7: 4
+
+
+public static void test(int);
+  Code:
+   Stack=2, Locals=1, Args_size=1
+   0:	getstatic	#3; //Field java/lang/System.out:Ljava/io/PrintStream;
+   3:	iload_0
+   4:	invokevirtual	#4; //Method java/io/PrintStream.println:(I)V
+   7:	iinc	0, 1
+   10:	iload_0
+   11:	invokestatic	#2; //Method test:(I)V
+   14:	return
+  LineNumberTable: 
+   line 11: 0
+   line 12: 7
+   line 13: 14
+
+
+}
+

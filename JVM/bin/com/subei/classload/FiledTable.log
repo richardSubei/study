@@ -3,41 +3,49 @@ public class com.subei.classload.FiledTable extends java.lang.Object
   SourceFile: "FiledTable.java"
   minor version: 0
   major version: 50
-  Constant pool:
-const #1 = Method	#3.#14;	//  java/lang/Object."<init>":()V
-const #2 = class	#15;	//  com/subei/classload/FiledTable
-const #3 = class	#16;	//  java/lang/Object
-const #4 = Asciz	m;
-const #5 = Asciz	I;
-const #6 = Asciz	<init>;
-const #7 = Asciz	()V;
-const #8 = Asciz	Code;
-const #9 = Asciz	LineNumberTable;
-const #10 = Asciz	test;
-const #11 = Asciz	(I)V;
-const #12 = Asciz	SourceFile;
-const #13 = Asciz	FiledTable.java;
-const #14 = NameAndType	#6:#7;//  "<init>":()V
-const #15 = Asciz	com/subei/classload/FiledTable;
-const #16 = Asciz	java/lang/Object;
+  Constant pool:												常量池	字面量和符号引用  字面量包括字符串、final常量等
+const #1 = Method	#6.#19;	//  java/lang/Object."<init>":()V
+const #2 = Field	#5.#20;	//  com/subei/classload/FiledTable.m:I
+const #3 = String	#21;	//  abc
+const #4 = Field	#5.#22;	//  com/subei/classload/FiledTable.str:Ljava/lang/String;
+const #5 = class	#23;	//  com/subei/classload/FiledTable
+const #6 = class	#24;	//  java/lang/Object
+const #7 = Asciz	m;
+const #8 = Asciz	I;
+const #9 = Asciz	ConstantValue;
+const #10 = int	0;													final常量
+const #11 = Asciz	str;
+const #12 = Asciz	Ljava/lang/String;;
+const #13 = Asciz	<init>;
+const #14 = Asciz	()V;
+const #15 = Asciz	Code;
+const #16 = Asciz	LineNumberTable;
+const #17 = Asciz	SourceFile;
+const #18 = Asciz	FiledTable.java;
+const #19 = NameAndType	#13:#14;//  "<init>":()V
+const #20 = NameAndType	#7:#8;//  m:I
+const #21 = Asciz	abc;												字符串
+const #22 = NameAndType	#11:#12;//  str:Ljava/lang/String;
+const #23 = Asciz	com/subei/classload/FiledTable;
+const #24 = Asciz	java/lang/Object;
 
 {
 public com.subei.classload.FiledTable();
   Code:
-   Stack=1, Locals=1, Args_size=1
+   Stack=2, Locals=1, Args_size=1
    0:	aload_0
    1:	invokespecial	#1; //Method java/lang/Object."<init>":()V
-   4:	return
+   4:	aload_0
+   5:	iconst_0
+   6:	putfield	#2; //Field m:I
+   9:	aload_0
+   10:	ldc	#3; //String abc
+   12:	putfield	#4; //Field str:Ljava/lang/String;
+   15:	return
   LineNumberTable: 
    line 7: 0
-
-
-public void test(int);
-  Code:
-   Stack=0, Locals=2, Args_size=2
-   0:	return
-  LineNumberTable: 
-   line 13: 0
+   line 9: 4
+   line 10: 9
 
 
 }

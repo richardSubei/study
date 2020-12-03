@@ -6,9 +6,7 @@ package com.subei.classload;
  */
 public class FiledTable {
 
-	private int m;
+	private final int m = 0;
+	private String str = "abc";
 	
-	public void test(int i) {
-		
-	}
 }
