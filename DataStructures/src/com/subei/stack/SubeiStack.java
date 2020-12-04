@@ -9,11 +9,13 @@ package com.subei.stack;
 public class SubeiStack {
 
 	private int[] items;
+	private int[] min;
 	private int size;
 	private int tail;
 	
 	public SubeiStack(int n) {
 		items = new int[n];
+		min = new int[n];
 		size = n;
 		tail = 0;
 	}
@@ -23,17 +25,37 @@ public class SubeiStack {
 			return false;
 		}
 		items[tail] = value;
-		++tail;
+		if (tail == 0) {
+			min[tail] = value;
+		} else {
+			if (value < min[tail - 1]) {
+				min[tail] = value;
+			} else {
+				min[tail] = min[tail - 1];
+			}
+		}
+		tail++;
 		return true;
 	}
 	
 	public int pop() {
 		if (tail == 0) {
-			return -1;
+			throw new RuntimeException("越界");
 		}
 		int value = items[tail - 1];
 		tail--;
 		return value;
+	}
+	
+	public int top() {
+		if (tail == 0) {
+			return -1;
+		}
+		return items[0];
+	}
+	
+	public int getMin() {
+		return min[tail - 1];
 	}
 	
 }

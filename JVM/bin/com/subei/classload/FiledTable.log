@@ -3,7 +3,7 @@ public class com.subei.classload.FiledTable extends java.lang.Object
   SourceFile: "FiledTable.java"
   minor version: 0
   major version: 50
-  Constant pool:												常量池	字面量和符号引用  字面量包括字符串、final常量等
+  Constant pool:													常量池	字面量和符号引用  字面量包括字符串、final常量等
 const #1 = Method	#6.#19;	//  java/lang/Object."<init>":()V
 const #2 = Field	#5.#20;	//  com/subei/classload/FiledTable.m:I
 const #3 = String	#21;	//  abc
