@@ -3,7 +3,8 @@ package com.subei.lock.aqs.countdownlatch;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
-
+//等待所有线程执行完毕，比如绩效系统中，查询收益率序列，可以启动三个线程分别去查询
+//组合收益率、基准收益率、无风险基准收益率，等待三个线程都执行完毕，再在主线程中汇总数据
 public class CountDownLatchTest {
 
 	public static void main(String[] args) {

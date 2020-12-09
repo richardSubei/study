@@ -61,15 +61,16 @@ public class LinkedListHasCycle {
 	
 //	复习写一遍
 	public static boolean checkReviw(Node l) {
-		Node fast = l.getNext();
 		Node slow = l;
-		
-		while (slow != null) {
-			if (fast == slow) {
-				return true;
-			}
+		Node fast = l;
+		Node cur = l;
+		while (cur != null) {
 			slow = slow.getNext();
 			fast = fast.getNext().getNext();
+			cur = cur.getNext();
+			if (slow == fast) {
+				return true;
+			}
 		}
 		return false;
 	}

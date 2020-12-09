@@ -71,15 +71,13 @@ public class LinkedListReverse {
 		if (head == null || head.getNext() == null) {
 			return head;
 		}
-		
 		Node pre = null;
-		Node cur = head;
-		Node temp = null;
-		while (cur != null) {
-			temp = cur.getNext();
-			cur.setNext(pre);
-			pre = cur;
-			cur = temp;
+		Node temp;
+		while (head != null) {
+			temp = head.getNext();
+			head.setNext(pre);
+			pre = head;
+			head = temp;
 		}
 		return pre;
 	}

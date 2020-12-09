@@ -1,5 +1,6 @@
 package com.subei.lock.aqs.cyclicbarrier;
 
+import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
 import java.util.concurrent.LinkedBlockingQueue;
 
@@ -7,37 +8,38 @@ import java.util.concurrent.LinkedBlockingQueue;
 public class CyclicBarrierTest {
 
 	 public static void main(String[] args) throws InterruptedException {
-	        final LinkedBlockingQueue<String> sqls = new LinkedBlockingQueue<String>();
-	        // 任务1+2+3...1000  拆分为100个任务（1+..10,  11+20） -> 100线程去处理。
+		 final LinkedBlockingQueue<Thread> queue = new LinkedBlockingQueue<Thread>();
+		 
+		 final CyclicBarrier cyclicBarrier = new CyclicBarrier(5, new Runnable() {
+			public void run() {
+				System.out.println("凑齐5个线程一起执行");
+				for (int i = 0; i < 5; i++) {
+					System.out.println(queue.poll().getName());
+				}
+			}
+		 });
 
-	        // 每当有4个线程处于await状态的时候，则会触发barrierAction执行
-	        final CyclicBarrier barrier = new CyclicBarrier(4, new Runnable() {
-	            @Override
-	            public void run() {
-	                // 这是每满足4次数据库操作，就触发一次批量执行
-	                System.out.println("有4个线程执行了，开始批量插入： " + Thread.currentThread());
-	                for (int i = 0; i < 4; i++) {
-	                    System.out.println(sqls.poll());
-	                }
-	            }
-	        });
-
-	        for (int i = 0; i < 10; i++) {
-	            new Thread(new Runnable() {
-					public void run() {
-						try {
-						    sqls.add("data - " + Thread.currentThread()); // 缓存起来
-						    Thread.sleep(3000L); // 模拟数据库操作耗时
-						    barrier.await(); // 等待栅栏打开,有4个线程都执行到这段代码的时候，才会继续往下执行
-						    System.out.println(Thread.currentThread() + "插入完毕");
-						} catch (Exception e) {
-						    e.printStackTrace();
-						}
+		 for (int i = 0; i < 10; i++) {
+			 new Thread(new Runnable() {
+				public void run() {
+					try {
+						Thread.sleep(3000);
+						queue.offer(Thread.currentThread());
+						System.out.println();
+						cyclicBarrier.await();				//阻塞等待凑齐线程个数
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					} catch (BrokenBarrierException e) {
+						e.printStackTrace();
 					}
-				}).start();
-	        }
-
-	        Thread.sleep(2000);
-	    }
+					System.out.println(Thread.currentThread().getName() + "执行完毕");
+				}
+			}).start();
+		 }
+		
+		 
+		 
+		 
+	 }
 	
 }
