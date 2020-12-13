@@ -37,7 +37,7 @@ public class ThreadStop {
 	}
 	
 	
-	//stop 线程不安全
+	//interrupt
 	public void testInterrupt () {
 		Thread t = new Thread(new Runnable() {
 			public void run() {

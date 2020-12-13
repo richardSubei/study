@@ -18,10 +18,10 @@ public class SemaphoreTest {
 			executor.execute(new Runnable() {
 				public void run() {
 					try {
-						semaphore.acquire();
+						semaphore.acquire();		//获取令牌，若令牌为空，则阻塞等待
 						test.service(vipNo);
 						Thread.sleep(10000);
-						semaphore.release();
+						semaphore.release();		//释放令牌，其他线程继续使用该令牌
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
