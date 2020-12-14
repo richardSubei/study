@@ -46,7 +46,11 @@ class ReadAndWriteThread extends Thread {
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
-			request.close();s
+			try {
+				request.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	
