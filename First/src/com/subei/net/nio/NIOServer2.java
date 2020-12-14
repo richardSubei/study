@@ -72,8 +72,8 @@ public class NIOServer2 {
                         while (buffer.hasRemaining()) {
                             socketChannel.write(buffer);
                         }
+                        key.cancel();		//处理完毕，取消selector中的readable事件
                     } catch (IOException e) {
-                        // e.printStackTrace();
                         key.cancel(); // 取消事件订阅
                     }
                 }

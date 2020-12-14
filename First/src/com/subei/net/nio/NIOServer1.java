@@ -49,7 +49,7 @@ public class NIOServer1 {
 					while (byteBuffer2.hasRemaining()) {
 						socketChannel2.write(byteBuffer2);
 					}
-					
+					iterator.remove();
 				}
 			}
 		}

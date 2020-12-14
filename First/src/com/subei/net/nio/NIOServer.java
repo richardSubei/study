@@ -12,7 +12,7 @@ public class NIOServer {
 	public static void main(String[] args) throws IOException, InterruptedException {
 		ServerSocketChannel serverSocketChannel = ServerSocketChannel.open();
 		serverSocketChannel.socket().bind(new InetSocketAddress(8080));
-		serverSocketChannel.configureBlocking(true);
+		serverSocketChannel.configureBlocking(false);
 		System.out.println("服务器启动成功");
 		while (true) {
 			SocketChannel socketChannel = serverSocketChannel.accept();	
