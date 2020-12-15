@@ -3,68 +3,74 @@ package com.subei.net.nio.reactor;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
+import java.nio.channels.ClosedChannelException;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 import java.util.Iterator;
 import java.util.Set;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
-public class Reactor implements Runnable {
 
+// Reactor多线程模型
+public class MultipleReactor implements Runnable{
+	
 	Selector selector;
 	ServerSocketChannel serverSocketChannel;
 	
 	public static void main(String[] args) {
-		new Thread(new Reactor()).start();
+		new Thread(new MultipleReactor()).start();
 	}
 	
-	public Reactor() {
+	public MultipleReactor() {
 		try {
 			selector = Selector.open();
 			serverSocketChannel = ServerSocketChannel.open();
 			serverSocketChannel.configureBlocking(false);
 			serverSocketChannel.socket().bind(new InetSocketAddress(8080));
-			System.out.println("服务启动");
-//			注册accept事件
-			SelectionKey key = serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);
-//			附件，下文中根据key.attachment获取绑定的附件，如果是accept则实例为acceptor，如果为读写事件，则实例为Handler
-			key.attach(new Acceptor(key));
+			System.out.println("服务器启动成功");
+			SelectionKey key = serverSocketChannel.register(selector, 0);
+			key.interestOps(SelectionKey.OP_ACCEPT);
+			key.attach(new Aceptor(key));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
 	public void run() {
-		try {
-			while (!Thread.interrupted()) {
+		while (!Thread.interrupted()) {
+			try {
 				selector.select();
 				Set<SelectionKey> keys = selector.selectedKeys();
 				Iterator<SelectionKey> iterator = keys.iterator();
 				while (iterator.hasNext()) {
 					SelectionKey key = iterator.next();
-					dispatch(key);	//分发事件
 					iterator.remove();
+					dispatch(key);
 				}
-				keys.clear();
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
-		} catch (IOException e) {
-			e.printStackTrace();
 		}
 	}
-	
+
 	public void dispatch(SelectionKey key) {
-		// 面向接口，看key是哪个实例（acceptor/handler）
-		Runnable runnable = (Runnable) key.attachment();	
-		if (runnable != null) {
-			runnable.run();
+		Runnable r = (Runnable) key.attachment();
+		if (r != null) {
+			r.run();
 		}
 	}
 	
-	class Acceptor implements Runnable {
+	class Aceptor implements Runnable {
+		
 		SelectionKey key;
 		
-		public Acceptor(SelectionKey key) {
+		public Aceptor(SelectionKey key) {
 			this.key = key;
 		}
 		
@@ -73,7 +79,7 @@ public class Reactor implements Runnable {
 				SocketChannel socketChannel = serverSocketChannel.accept();
 				System.out.println("收到请求，来自：" + socketChannel.getRemoteAddress());
 				if (socketChannel != null) {
-					new Handler(selector, socketChannel);
+					new MultipleHandler(selector, socketChannel);
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -82,25 +88,28 @@ public class Reactor implements Runnable {
 	}
 }
 
-class Handler implements Runnable {
-	SocketChannel socketChannel;
+class MultipleHandler implements Runnable {
+
 	SelectionKey key;
+	SocketChannel socketChannel;
 	ByteBuffer readBuffer = ByteBuffer.allocate(1024);
 	ByteBuffer writeBuffer = ByteBuffer.allocate(1024);
+	ExecutorService executorService = Executors.newFixedThreadPool(10);	//利用线程池处理任务
 	
-	public Handler(Selector selector, SocketChannel sChannel) {
-		this.socketChannel = sChannel;
+	public MultipleHandler(Selector selector, SocketChannel socketChannel) {
+		this.socketChannel = socketChannel;
 		try {
 			socketChannel.configureBlocking(false);
 			key = socketChannel.register(selector, 0);
-			key.attach(this);
 			key.interestOps(SelectionKey.OP_READ);
-			selector.wakeup();
+			key.attach(this);
+		} catch (ClosedChannelException e) {
+			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-
+	
 	public void run() {
 		if (key.isReadable()) {
             try {
@@ -115,13 +124,20 @@ class Handler implements Runnable {
 				System.out.println(new String(content));
 				System.out.println("收到数据,来自：" + socketChannel.getRemoteAddress());
 //				doSomething 
-//				todo
+//				与Reactor单线程模型的区别是此处使用线程池提交任务
+				Future<String> future = executorService.submit(new Processer());	
+				System.out.println(future.get());
 				key.interestOps(SelectionKey.OP_WRITE);
 			} catch (IOException e) {
 				e.printStackTrace();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			} catch (ExecutionException e) {
+				e.printStackTrace();
 			}
 		}
-		if (key.isWritable()) {
+		
+		if (key.isAcceptable()) {
             // 响应结果 200
             String response = "HTTP/1.1 200 OK\r\n" +
                     "Content-Length: 11\r\n\r\n" +
@@ -137,6 +153,14 @@ class Handler implements Runnable {
             key.cancel();		//处理完毕，取消selector中的事件
 		}
 	}
+}
+
+class Processer implements Callable<String> {
+
+	public String call() throws Exception {
+		return "处理成功";
+	}
+	
 }
 
 

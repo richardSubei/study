@@ -3,6 +3,8 @@ package com.subei.net.nio.reactor;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
+import java.nio.channels.ClosedChannelException;
+import java.nio.channels.SelectableChannel;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
@@ -10,16 +12,18 @@ import java.nio.channels.SocketChannel;
 import java.util.Iterator;
 import java.util.Set;
 
-public class Reactor implements Runnable {
+
+// 改造成mainReactor subReactor
+public class CopyOfReactor implements Runnable {
 
 	Selector selector;
 	ServerSocketChannel serverSocketChannel;
 	
 	public static void main(String[] args) {
-		new Thread(new Reactor()).start();
+		new Thread(new CopyOfReactor()).start();
 	}
 	
-	public Reactor() {
+	public CopyOfReactor() {
 		try {
 			selector = Selector.open();
 			serverSocketChannel = ServerSocketChannel.open();
@@ -29,7 +33,7 @@ public class Reactor implements Runnable {
 //			注册accept事件
 			SelectionKey key = serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);
 //			附件，下文中根据key.attachment获取绑定的附件，如果是accept则实例为acceptor，如果为读写事件，则实例为Handler
-			key.attach(new Acceptor(key));
+			key.attach(new MainReactor(key));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -61,19 +65,31 @@ public class Reactor implements Runnable {
 		}
 	}
 	
-	class Acceptor implements Runnable {
-		SelectionKey key;
+	class MainReactor implements Runnable {
+		subReactor[] handlers = new subReactor[10];
+		volatile int nextHandler = 0;
 		
-		public Acceptor(SelectionKey key) {
-			this.key = key;
+		public MainReactor(SelectionKey key) {
+			this.init();
+		}
+		
+		public void init() {
+			for (int i = 0; i < handlers.length; i++) {
+				handlers[i] = new subReactor();
+			}
 		}
 		
 		public void run() {
 			try {
 				SocketChannel socketChannel = serverSocketChannel.accept();
+				socketChannel.configureBlocking(false);
 				System.out.println("收到请求，来自：" + socketChannel.getRemoteAddress());
 				if (socketChannel != null) {
-					new Handler(selector, socketChannel);
+					subReactor handler = handlers[nextHandler];
+					handler.register(socketChannel);
+					if (nextHandler >= handlers.length) {
+						nextHandler = 0;
+					}
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -82,59 +98,47 @@ public class Reactor implements Runnable {
 	}
 }
 
-class Handler implements Runnable {
-	SocketChannel socketChannel;
-	SelectionKey key;
+class subReactor implements Runnable {
+	Selector selector;
 	ByteBuffer readBuffer = ByteBuffer.allocate(1024);
 	ByteBuffer writeBuffer = ByteBuffer.allocate(1024);
 	
-	public Handler(Selector selector, SocketChannel sChannel) {
-		this.socketChannel = sChannel;
+	public subReactor() {
 		try {
-			socketChannel.configureBlocking(false);
-			key = socketChannel.register(selector, 0);
-			key.attach(this);
-			key.interestOps(SelectionKey.OP_READ);
-			selector.wakeup();
+			selector = Selector.open();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-
+	
+	public void register(SelectableChannel channel) {
+		try {
+			channel.register(selector, SelectionKey.OP_READ, this);
+		} catch (ClosedChannelException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void run() {
-		if (key.isReadable()) {
-            try {
-				while (socketChannel.isOpen() && socketChannel.read(readBuffer) != -1) {
-				    // 长连接情况下,需要手动判断数据有没有读取结束 (此处做一个简单的判断: 超过0字节就认为请求结束了)
-				    if (readBuffer.position() > 0) break;
+		while (true) {
+			try {
+				selector.select();
+				Set<SelectionKey> keys = selector.selectedKeys();
+				Iterator<SelectionKey> iterator = keys.iterator();
+				while (iterator.hasNext()) {
+					SelectionKey key = iterator.next();
+					iterator.remove();
+					if (key.isReadable()) {
+						System.out.println("有数据了");
+						System.out.println(Thread.currentThread());
+					} 
+					if (key.isWritable()) {
+						
+					}
 				}
-//				if(readBuffer.position() == 0) continue; // 如果没数据了, 则不继续后面的处理
-				readBuffer.flip();
-				byte[] content = new byte[readBuffer.limit()];
-				readBuffer.get(content);
-				System.out.println(new String(content));
-				System.out.println("收到数据,来自：" + socketChannel.getRemoteAddress());
-//				doSomething 
-//				todo
-				key.interestOps(SelectionKey.OP_WRITE);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		}
-		if (key.isWritable()) {
-            // 响应结果 200
-            String response = "HTTP/1.1 200 OK\r\n" +
-                    "Content-Length: 11\r\n\r\n" +
-                    "Hello World";
-            ByteBuffer buffer = ByteBuffer.wrap(response.getBytes());
-            while (buffer.hasRemaining()) {
-                try {
-					socketChannel.write(buffer);
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-            }
-            key.cancel();		//处理完毕，取消selector中的事件
 		}
 	}
 }
