@@ -14,16 +14,17 @@ import java.util.Set;
 
 
 // 改造成mainReactor subReactor
-public class CopyOfReactor implements Runnable {
+// 暂时改造失败
+public class ReactorPractise implements Runnable {
 
 	Selector selector;
 	ServerSocketChannel serverSocketChannel;
 	
 	public static void main(String[] args) {
-		new Thread(new CopyOfReactor()).start();
+		new Thread(new ReactorPractise()).start();
 	}
 	
-	public CopyOfReactor() {
+	public ReactorPractise() {
 		try {
 			selector = Selector.open();
 			serverSocketChannel = ServerSocketChannel.open();
@@ -142,6 +143,3 @@ class subReactor implements Runnable {
 		}
 	}
 }
-
-
-

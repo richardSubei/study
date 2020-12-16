@@ -18,16 +18,16 @@ import java.util.concurrent.Future;
 
 
 // Reactor多线程模型
-public class MultipleReactor implements Runnable{
+public class ReactorMultiple implements Runnable{
 	
 	Selector selector;
 	ServerSocketChannel serverSocketChannel;
 	
 	public static void main(String[] args) {
-		new Thread(new MultipleReactor()).start();
+		new Thread(new ReactorMultiple()).start();
 	}
 	
-	public MultipleReactor() {
+	public ReactorMultiple() {
 		try {
 			selector = Selector.open();
 			serverSocketChannel = ServerSocketChannel.open();
