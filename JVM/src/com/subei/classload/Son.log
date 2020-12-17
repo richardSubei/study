@@ -1,0 +1,77 @@
+Compiled from "ClassInit.java"
+class com.subei.classload.Son extends com.subei.classload.Father
+  SourceFile: "ClassInit.java"
+  minor version: 0
+  major version: 50
+  Constant pool:
+const #1 = Method	#8.#22;	//  com/subei/classload/Father."<init>":()V
+const #2 = String	#23;	//  son
+const #3 = Field	#7.#24;	//  com/subei/classload/Son.sonName:Ljava/lang/String;
+const #4 = Field	#25.#26;	//  java/lang/System.out:Ljava/io/PrintStream;
+const #5 = String	#27;	//  Im son
+const #6 = Method	#28.#29;	//  java/io/PrintStream.println:(Ljava/lang/String;)V
+const #7 = class	#30;	//  com/subei/classload/Son
+const #8 = class	#31;	//  com/subei/classload/Father
+const #9 = Asciz	sonAge;
+const #10 = Asciz	I;
+const #11 = Asciz	ConstantValue;
+const #12 = int	3;
+const #13 = Asciz	sonName;
+const #14 = Asciz	Ljava/lang/String;;
+const #15 = Asciz	<init>;
+const #16 = Asciz	()V;
+const #17 = Asciz	Code;
+const #18 = Asciz	LineNumberTable;
+const #19 = Asciz	<clinit>;
+const #20 = Asciz	SourceFile;
+const #21 = Asciz	ClassInit.java;
+const #22 = NameAndType	#15:#16;//  "<init>":()V
+const #23 = Asciz	son;
+const #24 = NameAndType	#13:#14;//  sonName:Ljava/lang/String;
+const #25 = class	#32;	//  java/lang/System
+const #26 = NameAndType	#33:#34;//  out:Ljava/io/PrintStream;
+const #27 = Asciz	Im son;
+const #28 = class	#35;	//  java/io/PrintStream
+const #29 = NameAndType	#36:#37;//  println:(Ljava/lang/String;)V
+const #30 = Asciz	com/subei/classload/Son;
+const #31 = Asciz	com/subei/classload/Father;
+const #32 = Asciz	java/lang/System;
+const #33 = Asciz	out;
+const #34 = Asciz	Ljava/io/PrintStream;;
+const #35 = Asciz	java/io/PrintStream;
+const #36 = Asciz	println;
+const #37 = Asciz	(Ljava/lang/String;)V;
+
+{
+public static final int sonAge;
+  Constant value: int 3
+public java.lang.String sonName;
+
+com.subei.classload.Son();
+  Code:
+   Stack=2, Locals=1, Args_size=1
+   0:	aload_0
+   1:	invokespecial	#1; //Method com/subei/classload/Father."<init>":()V
+   4:	aload_0
+   5:	ldc	#2; //String son
+   7:	putfield	#3; //Field sonName:Ljava/lang/String;
+   10:	return
+  LineNumberTable: 
+   line 47: 0
+   line 50: 4
+
+
+static {};
+  Code:
+   Stack=2, Locals=0, Args_size=0
+   0:	getstatic	#4; //Field java/lang/System.out:Ljava/io/PrintStream;
+   3:	ldc	#5; //String Im son
+   5:	invokevirtual	#6; //Method java/io/PrintStream.println:(Ljava/lang/String;)V
+   8:	return
+  LineNumberTable: 
+   line 53: 0
+   line 54: 8
+
+
+}
+
