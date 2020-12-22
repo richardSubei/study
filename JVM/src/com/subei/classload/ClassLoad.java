@@ -1,5 +1,7 @@
 package com.subei.classload;
 
+import java.io.IOException;
+
 // 1. 加载	jar war jsp 
 //	1）通过一个类的全限定名来获取定义此类的二进制字节流
 //	2）将二进制字节流代表的静态存储结构转换为方法区的运行时数据
@@ -29,4 +31,7 @@ package com.subei.classload;
 //	 执行类构造器的过程，clinit, clinit收集代码中为类变量赋值和static语句块中的代码  （非法向前引用）
 public class ClassLoad {
 
+	public static void main(String[] args) throws IOException {
+		System.in.read();
+	}
 }
