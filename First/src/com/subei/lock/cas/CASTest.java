@@ -43,7 +43,7 @@ public class CASTest {
 	}
 	
 	public static void main(String[] args) throws Exception {
-		CASTest casTest = new CASTest();
+		final CASTest casTest = new CASTest();
 		for (int i = 0; i < 2; i++) {
 			new Thread(new Runnable() {
 				@Override

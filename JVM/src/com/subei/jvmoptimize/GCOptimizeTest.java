@@ -4,6 +4,7 @@ import java.util.Random;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
+//GC优化演示
 public class GCOptimizeTest {
 
 	public static void main(String[] args) {
