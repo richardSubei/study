@@ -12,8 +12,8 @@ public class ThreadCommunication {
 	private Object baozi = null;
 	
 	public static void main(String[] args) throws InterruptedException {
-		new ThreadCommunication().testSuspend();
-//		new ThreadCommunication().testWait();
+//		new ThreadCommunication().testSuspend();
+		new ThreadCommunication().testWait();
 //		new ThreadCommunication().testPark();
 	}
 	

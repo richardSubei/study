@@ -1,0 +1,9 @@
+Heap
+ PSYoungGen      total 152896K, used 5243K [0x1e950000, 0x293f0000, 0x293f0000)
+  eden space 131072K, 4% used [0x1e950000,0x1ee6ec00,0x26950000)
+  from space 21824K, 0% used [0x27ea0000,0x27ea0000,0x293f0000)
+  to   space 21824K, 0% used [0x26950000,0x26950000,0x27ea0000)
+ PSOldGen        total 349568K, used 0K [0x093f0000, 0x1e950000, 0x1e950000)
+  object space 349568K, 0% used [0x093f0000,0x093f0000,0x1e950000)
+ PSPermGen       total 16384K, used 2167K [0x053f0000, 0x063f0000, 0x093f0000)
+  object space 16384K, 13% used [0x053f0000,0x0560dc18,0x063f0000)

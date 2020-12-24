@@ -44,7 +44,5 @@ public class AllocationStrategy {
 		byte[] byte4 = new byte[4 * _1M];
 		//3个2M的数组通过分配担保机制进入老年代 		
 	}
-	
-	
-	
+
 }

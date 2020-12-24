@@ -4,7 +4,9 @@ import java.util.Random;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-//GC优化演示
+//jvm GC优化演示
+//每100毫秒创建150个线程，1秒钟最多存在1500个线程
+//调整线程数量，调整垃圾收集器，观察
 public class GCOptimizeTest {
 
 	public static void main(String[] args) {

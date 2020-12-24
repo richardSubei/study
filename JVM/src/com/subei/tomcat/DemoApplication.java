@@ -1,5 +1,8 @@
 package com.subei.tomcat;
 
+// tomcat调优
+// connections连接数量  accpcount操作系统层面可允许的连接数量
+//
 import java.util.Random;
 
 import org.springframework.boot.SpringApplication;
