@@ -1,4 +1,4 @@
-package com.subei.gc;
+package com.subei.jvm.gc;
 
 public class FullGCDemo1 {
 
