@@ -27,9 +27,11 @@ public class ConsumerPS {
 		try {
 			connection = factory.newConnection();
 			channel = connection.createChannel();
-			
+//			定义exchange		名称及类型
 			channel.exchangeDeclare("exchange-ps", "direct");
+//			临时队列
 			String queueName = channel.queueDeclare().getQueue();
+//			绑定exchange 和 队列 
 			channel.queueBind(queueName, "exchange-ps", "key-ps");
 			
 			DeliverCallback callback = new DeliverCallback() {
@@ -52,7 +54,6 @@ public class ConsumerPS {
 		} catch (IOException | TimeoutException e) {
 			e.printStackTrace();
 		}
-				
-		
+
 	}
 }

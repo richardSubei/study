@@ -26,7 +26,7 @@ public class RabbitmqConsumer {
 			channel = connection.createChannel();
 			
 			channel.queueDeclare("queuetest", false, false, false, null);
-			
+//			回调函数，收到数据后调用此方法
 			DeliverCallback callback = new DeliverCallback() {
 				
 				@Override

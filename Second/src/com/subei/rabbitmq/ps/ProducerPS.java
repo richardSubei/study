@@ -1,4 +1,4 @@
-package com.subei.rabbitmq;
+package com.subei.rabbitmq.ps;
 
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;

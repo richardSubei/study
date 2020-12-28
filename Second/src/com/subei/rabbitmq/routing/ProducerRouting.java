@@ -25,7 +25,7 @@ public class ProducerRouting {
 			channel = connection.createChannel();
 			
 			String msg = "Hello A";
-			
+//			exchange 	routing key
 			channel.basicPublish("direct-exchange", "routing key1", null, msg.getBytes());
 			System.out.println("消息已发送");
 		} catch (IOException | TimeoutException e) {
