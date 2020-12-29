@@ -54,7 +54,7 @@ public class ConsumerRouting {
 	};
 	
 	public static void main(String[] args) {
-		new Thread(Service, "queue1").start();;
-		new Thread(Service, "queue3").start();;
+		new Thread(Service, "queue-ps").start();;
+//		new Thread(Service, "queue-ps").start();;
 	}
 }

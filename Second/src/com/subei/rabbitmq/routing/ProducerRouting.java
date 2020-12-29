@@ -25,6 +25,10 @@ public class ProducerRouting {
 			channel = connection.createChannel();
 			
 			String msg = "Hello A";
+			channel.queueDeclare("queue-ps", false, false, false, null);
+			channel.exchangeDeclare("direct-exchange", "direct");
+			channel.queueBind("queue-ps", "direct-exchange", "routing key1");
+			
 //			exchange 	routing key
 			channel.basicPublish("direct-exchange", "routing key1", null, msg.getBytes());
 			System.out.println("消息已发送");
