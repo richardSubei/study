@@ -10,7 +10,7 @@ import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.DeliverCallback;
 import com.rabbitmq.client.Delivery;
 
-public class ConsumerWorker {
+public class ConsumerWorker2 {
 
 	public static void main(String[] args) {
 		ConnectionFactory factory = new ConnectionFactory();
@@ -30,15 +30,14 @@ public class ConsumerWorker {
 				public void handle(String consumerTag, Delivery message) throws IOException {
 					System.out.println("收到消息：" + new String(message.getBody(), "UTF-8"));
 					try {
-						Thread.sleep(800);
+						Thread.sleep(200);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
 				}
 			};
-			
 			channel.queueDeclare("queue-worker", false, false, false, null);
-
+			
 			channel.basicQos(10);
 			
 			channel.basicConsume("queue-worker", callback, new CancelCallback() {
