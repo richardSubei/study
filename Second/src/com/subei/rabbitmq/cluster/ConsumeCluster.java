@@ -27,8 +27,9 @@ public class ConsumeCluster {
 				new Address("8.133.181.141"),
 				new Address("8.133.170.150")
 		};
-		
+//		开启自动重连
 		factory.setAutomaticRecoveryEnabled(true);
+//		设置每200ms重连一次
 		factory.setNetworkRecoveryInterval(200);
 		
 		Connection connection = null;
@@ -69,7 +70,7 @@ public class ConsumeCluster {
 				}
 			});
 			
-			System.out.println("消费者收到数据");
+			System.out.println("准备接受数据");
 			System.in.read();
 		} catch (IOException | TimeoutException e) {
 			e.printStackTrace();
