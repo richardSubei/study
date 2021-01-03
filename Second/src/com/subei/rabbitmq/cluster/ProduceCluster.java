@@ -13,7 +13,8 @@ import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.Recoverable;
 import com.rabbitmq.client.RecoveryListener;
-
+// 高可用		
+// 要开启镜像队列
 public class ProduceCluster {
 
 	public static void main(String[] args) {

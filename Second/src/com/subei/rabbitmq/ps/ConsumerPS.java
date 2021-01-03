@@ -12,6 +12,7 @@ import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.DeliverCallback;
 import com.rabbitmq.client.Delivery;
 
+// 临时队列使用
 public class ConsumerPS {
 
 	public static void main(String[] args) {
