@@ -4,7 +4,7 @@ import java.lang.invoke.MethodHandle;
 import java.lang.invoke.MethodHandles;
 import java.lang.invoke.MethodType;
 
-public class UseInvoke {
+public class DispatchRegular {
 	
 	class GrandFather {
 		public void thinking() {
@@ -41,7 +41,7 @@ public class UseInvoke {
 	}
 
 	public static void main(String[] args) {
-		new UseInvoke().new Son().thinking();
+		new DispatchRegular().new Son().thinking();
 	}
 }
 

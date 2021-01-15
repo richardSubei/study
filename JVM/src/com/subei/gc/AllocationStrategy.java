@@ -2,15 +2,19 @@ package com.subei.gc;
 
 //内存分配策略	 serial/serial old	parnew/seriol old (不同收集器分配策略是不同的)
 
-//对象优先在eden分配，当eden空间不够时，将通过分配担保机制提前进入老年代
+//对象优先在eden分配，当eden空间不够时，虚拟机将发起一次monior GC，通过分配担保机制提前进入老年代
 
 //大对象直接进入老年代
-//-XX:PretenureSizeThreshold=1024*1024  此参数的单位只能是字节，如题为1M
+//-XX:PretenureSizeThreshold=1024*1024  此参数的单位只能是字节，如题为1M（此参数只对
+//serial和parNew收集器有效）
 
 //长期存活的对象进入老年代
 //-XX:MaxTenuringThreshold=15 设置经过多少次moniorGC还未被回收则进入老年代 默认为15次
 //但是当survivor中相同年龄的对象超过survivor空间的一半时，则大于等于该年龄的对象提前进入
 //老年代，就算其年龄未超过设置的值
+
+//对象动态年龄判断，如果在survivor中，相同年龄的对象大小超过survivor的一半时，大于或等于
+//该年龄的对象将提前进入老年代
 
 //空间分配担保
 //在发生monior GC之前，虚拟机会检查老年代连续空间大于是否大于新生代所有存活的对象所占空间，

@@ -1,0 +1,94 @@
+Compiled from "Dispatch.java"
+public class com.subei.bytecodeexecute.Dispatch extends java.lang.Object
+  SourceFile: "Dispatch.java"
+  InnerClass: 
+   public #14= #4 of #12; //Son=class com/subei/bytecodeexecute/Dispatch$Son of class com/subei/bytecodeexecute/Dispatch
+   public #16= #2 of #12; //Father=class com/subei/bytecodeexecute/Dispatch$Father of class com/subei/bytecodeexecute/Dispatch
+   #17= #6 of #12; //_360=class com/subei/bytecodeexecute/Dispatch$_360 of class com/subei/bytecodeexecute/Dispatch
+   #18= #9 of #12; //QQ=class com/subei/bytecodeexecute/Dispatch$QQ of class com/subei/bytecodeexecute/Dispatch
+  minor version: 0
+  major version: 50
+  Constant pool:
+const #1 = Method	#13.#27;	//  java/lang/Object."<init>":()V
+const #2 = class	#28;	//  com/subei/bytecodeexecute/Dispatch$Father
+const #3 = Method	#2.#27;	//  com/subei/bytecodeexecute/Dispatch$Father."<init>":()V
+const #4 = class	#29;	//  com/subei/bytecodeexecute/Dispatch$Son
+const #5 = Method	#4.#27;	//  com/subei/bytecodeexecute/Dispatch$Son."<init>":()V
+const #6 = class	#30;	//  com/subei/bytecodeexecute/Dispatch$_360
+const #7 = Method	#6.#27;	//  com/subei/bytecodeexecute/Dispatch$_360."<init>":()V
+const #8 = Method	#2.#31;	//  com/subei/bytecodeexecute/Dispatch$Father.hardChoice:(Lcom/subei/bytecodeexecute/Dispatch$_360;)V
+const #9 = class	#32;	//  com/subei/bytecodeexecute/Dispatch$QQ
+const #10 = Method	#9.#27;	//  com/subei/bytecodeexecute/Dispatch$QQ."<init>":()V
+const #11 = Method	#2.#33;	//  com/subei/bytecodeexecute/Dispatch$Father.hardChoice:(Lcom/subei/bytecodeexecute/Dispatch$QQ;)V
+const #12 = class	#34;	//  com/subei/bytecodeexecute/Dispatch
+const #13 = class	#35;	//  java/lang/Object
+const #14 = Asciz	Son;
+const #15 = Asciz	InnerClasses;
+const #16 = Asciz	Father;
+const #17 = Asciz	_360;
+const #18 = Asciz	QQ;
+const #19 = Asciz	<init>;
+const #20 = Asciz	()V;
+const #21 = Asciz	Code;
+const #22 = Asciz	LineNumberTable;
+const #23 = Asciz	main;
+const #24 = Asciz	([Ljava/lang/String;)V;
+const #25 = Asciz	SourceFile;
+const #26 = Asciz	Dispatch.java;
+const #27 = NameAndType	#19:#20;//  "<init>":()V
+const #28 = Asciz	com/subei/bytecodeexecute/Dispatch$Father;
+const #29 = Asciz	com/subei/bytecodeexecute/Dispatch$Son;
+const #30 = Asciz	com/subei/bytecodeexecute/Dispatch$_360;
+const #31 = NameAndType	#36:#37;//  hardChoice:(Lcom/subei/bytecodeexecute/Dispatch$_360;)V
+const #32 = Asciz	com/subei/bytecodeexecute/Dispatch$QQ;
+const #33 = NameAndType	#36:#38;//  hardChoice:(Lcom/subei/bytecodeexecute/Dispatch$QQ;)V
+const #34 = Asciz	com/subei/bytecodeexecute/Dispatch;
+const #35 = Asciz	java/lang/Object;
+const #36 = Asciz	hardChoice;
+const #37 = Asciz	(Lcom/subei/bytecodeexecute/Dispatch$_360;)V;
+const #38 = Asciz	(Lcom/subei/bytecodeexecute/Dispatch$QQ;)V;
+
+{
+public com.subei.bytecodeexecute.Dispatch();
+  Code:
+   Stack=1, Locals=1, Args_size=1
+   0:	aload_0
+   1:	invokespecial	#1; //Method java/lang/Object."<init>":()V
+   4:	return
+  LineNumberTable: 
+   line 4: 0
+   line 24: 4
+
+
+public static void main(java.lang.String[]);
+  Code:
+   Stack=3, Locals=3, Args_size=1
+   0:	new	#2; //class com/subei/bytecodeexecute/Dispatch$Father
+   3:	dup
+   4:	invokespecial	#3; //Method com/subei/bytecodeexecute/Dispatch$Father."<init>":()V
+   7:	astore_1
+   8:	new	#4; //class com/subei/bytecodeexecute/Dispatch$Son
+   11:	dup
+   12:	invokespecial	#5; //Method com/subei/bytecodeexecute/Dispatch$Son."<init>":()V
+   15:	astore_2
+   16:	aload_1
+   17:	new	#6; //class com/subei/bytecodeexecute/Dispatch$_360
+   20:	dup
+   21:	invokespecial	#7; //Method com/subei/bytecodeexecute/Dispatch$_360."<init>":()V
+   24:	invokevirtual	#8; //Method com/subei/bytecodeexecute/Dispatch$Father.hardChoice:(Lcom/subei/bytecodeexecute/Dispatch$_360;)V
+   27:	aload_2
+   28:	new	#9; //class com/subei/bytecodeexecute/Dispatch$QQ
+   31:	dup
+   32:	invokespecial	#10; //Method com/subei/bytecodeexecute/Dispatch$QQ."<init>":()V
+   35:	invokevirtual	#11; //Method com/subei/bytecodeexecute/Dispatch$Father.hardChoice:(Lcom/subei/bytecodeexecute/Dispatch$QQ;)V
+   38:	return
+  LineNumberTable: 
+   line 38: 0
+   line 39: 8
+   line 40: 16
+   line 41: 27
+   line 42: 38
+
+
+}
+

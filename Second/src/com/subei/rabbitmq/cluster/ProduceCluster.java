@@ -9,10 +9,12 @@ import java.util.concurrent.TimeoutException;
 import com.rabbitmq.client.Address;
 import com.rabbitmq.client.AlreadyClosedException;
 import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.ConfirmListener;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.Recoverable;
 import com.rabbitmq.client.RecoveryListener;
+import com.rabbitmq.client.AMQP.BasicProperties;
 // 高可用		
 // 要开启镜像队列
 public class ProduceCluster {
@@ -53,22 +55,35 @@ public class ProduceCluster {
 			});
 			
 			channel = connection.createChannel();
-			
-			channel.exchangeDeclare("exchange-fanout", "fanout");
-			channel.queueDeclare("queue1", false, false, false, null);
-			channel.queueBind("queue1", "exchange-fanout", "");
+			channel.confirmSelect();
+			channel.addConfirmListener(new ConfirmListener() {
+				
+				@Override
+				public void handleNack(long deliveryTag, boolean multiple) throws IOException {
+					System.out.println("send failed: " + deliveryTag);
+				}
+				
+				@Override
+				public void handleAck(long deliveryTag, boolean multiple) throws IOException {
+					System.out.println("send success: " + deliveryTag);
+				}
+			});
+			channel.exchangeDeclare("exchange-cluster", "fanout");
+			channel.queueDeclare("queue-cluster", false, false, false, null);
+			channel.queueBind("queue-cluster", "exchange-cluster", "");
 			
             for (int i = 0; i < 20; i++) {
                 // 消息内容
                 String message = "Hello World " + i;
                 try {
+    				BasicProperties basicProperties = new BasicProperties();
                     // 发送消息
-                    channel.basicPublish("", "queue1", null, message.getBytes());
+                    channel.basicPublish("", "queue-cluster", basicProperties, message.getBytes());
                 } catch (AlreadyClosedException e) {
                     // 可能连接已关闭，等待重连
                     System.out.println("消息 " + message + " 发送失败！");
                     i--;
-                    TimeUnit.SECONDS.sleep(2);
+                    TimeUnit.SECONDS.sleep(1);
                     continue;
                 }
                 System.out.println("消息 " + i + " 已发送！");

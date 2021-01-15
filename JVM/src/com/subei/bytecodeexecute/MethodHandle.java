@@ -1,8 +1,8 @@
 package com.subei.bytecodeexecute;
 
+import java.io.PrintStream;
 import java.lang.invoke.MethodHandles;
 import java.lang.invoke.MethodType;
-import java.lang.invoke.MethodHandles.Lookup;
 
 public class MethodHandle {
 
@@ -14,10 +14,9 @@ public class MethodHandle {
 		
 	}
 	
-	private static java.lang.invoke.MethodHandle getPrintMH(Object receiver) {
-//		MethodType mt = MethodType.methodType(void.class, String.class);
-		return null;
-//		return MethodHandles.lookup().findVirtual(receiver.getClass(), "println", mt).bindTo(receiver);
+	private static java.lang.invoke.MethodHandle getPrintMH(Object receiver) throws NoSuchMethodException, IllegalAccessException {
+		MethodType mt = MethodType.methodType(void.class, String.class);
+		return MethodHandles.lookup().findVirtual(receiver.getClass(), "println", mt).bindTo(receiver);
 	}
 	
 }

@@ -1,0 +1,96 @@
+Compiled from "Resolution.java"
+public class com.subei.bytecodeexecute.Resolution extends java.lang.Object
+  SourceFile: "Resolution.java"
+  minor version: 0
+  major version: 50
+  Constant pool:
+const #1 = Method	#10.#21;	//  java/lang/Object."<init>":()V
+const #2 = Method	#3.#22;	//  com/subei/bytecodeexecute/Resolution.test:()V
+const #3 = class	#23;	//  com/subei/bytecodeexecute/Resolution
+const #4 = Method	#3.#21;	//  com/subei/bytecodeexecute/Resolution."<init>":()V
+const #5 = Method	#3.#24;	//  com/subei/bytecodeexecute/Resolution.testFinal:()V
+const #6 = Field	#25.#26;	//  java/lang/System.out:Ljava/io/PrintStream;
+const #7 = String	#27;	//  解析
+const #8 = Method	#28.#29;	//  java/io/PrintStream.println:(Ljava/lang/String;)V
+const #9 = String	#30;	//  final
+const #10 = class	#31;	//  java/lang/Object
+const #11 = Asciz	<init>;
+const #12 = Asciz	()V;
+const #13 = Asciz	Code;
+const #14 = Asciz	LineNumberTable;
+const #15 = Asciz	main;
+const #16 = Asciz	([Ljava/lang/String;)V;
+const #17 = Asciz	test;
+const #18 = Asciz	testFinal;
+const #19 = Asciz	SourceFile;
+const #20 = Asciz	Resolution.java;
+const #21 = NameAndType	#11:#12;//  "<init>":()V
+const #22 = NameAndType	#17:#12;//  test:()V
+const #23 = Asciz	com/subei/bytecodeexecute/Resolution;
+const #24 = NameAndType	#18:#12;//  testFinal:()V
+const #25 = class	#32;	//  java/lang/System
+const #26 = NameAndType	#33:#34;//  out:Ljava/io/PrintStream;
+const #27 = Asciz	解析;
+const #28 = class	#35;	//  java/io/PrintStream
+const #29 = NameAndType	#36:#37;//  println:(Ljava/lang/String;)V
+const #30 = Asciz	final;
+const #31 = Asciz	java/lang/Object;
+const #32 = Asciz	java/lang/System;
+const #33 = Asciz	out;
+const #34 = Asciz	Ljava/io/PrintStream;;
+const #35 = Asciz	java/io/PrintStream;
+const #36 = Asciz	println;
+const #37 = Asciz	(Ljava/lang/String;)V;
+
+{
+public com.subei.bytecodeexecute.Resolution();
+  Code:
+   Stack=1, Locals=1, Args_size=1
+   0:	aload_0
+   1:	invokespecial	#1; //Method java/lang/Object."<init>":()V
+   4:	return
+  LineNumberTable: 
+   line 7: 0
+
+
+public static void main(java.lang.String[]);
+  Code:
+   Stack=2, Locals=1, Args_size=1
+   0:	invokestatic	#2; //Method test:()V
+   3:	new	#3; //class com/subei/bytecodeexecute/Resolution
+   6:	dup
+   7:	invokespecial	#4; //Method "<init>":()V
+   10:	invokevirtual	#5; //Method testFinal:()V
+   13:	return
+  LineNumberTable: 
+   line 10: 0
+   line 11: 3
+   line 12: 13
+
+
+public static void test();
+  Code:
+   Stack=2, Locals=0, Args_size=0
+   0:	getstatic	#6; //Field java/lang/System.out:Ljava/io/PrintStream;
+   3:	ldc	#7; //String 解析
+   5:	invokevirtual	#8; //Method java/io/PrintStream.println:(Ljava/lang/String;)V
+   8:	return
+  LineNumberTable: 
+   line 15: 0
+   line 16: 8
+
+
+public final void testFinal();
+  Code:
+   Stack=2, Locals=1, Args_size=1
+   0:	getstatic	#6; //Field java/lang/System.out:Ljava/io/PrintStream;
+   3:	ldc	#9; //String final
+   5:	invokevirtual	#8; //Method java/io/PrintStream.println:(Ljava/lang/String;)V
+   8:	return
+  LineNumberTable: 
+   line 19: 0
+   line 20: 8
+
+
+}
+
